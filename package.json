@@ -1,0 +1,22 @@
+{
+  "name": "calamus",
+  "version": "0.0.0",
+  "main": "src/index.ts",
+  "repository": "https://github.com/jdenderplays/Calamus.git",
+  "author": "Jdender <jdenderplays@gmail.com>",
+  "license": "AGPL-3.0",
+  "scripts": {
+    "start": "docker-compose up",
+    "restart": "docker-compose restart node",
+    "stop": "docker-compose down"
+  },
+  "dependencies": {
+    "@types/node": "^10.12.18",
+    "discord.js": "discordjs/discord.js#master",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.4"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0-pre.32"
+  }
+}

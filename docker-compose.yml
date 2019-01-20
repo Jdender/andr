@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+  node:
+    build: .
+    command: yarn ts-node-dev --respawn --files .
+    volumes:
+      - .:/usr/app/
+    env_file:
+      - .env
