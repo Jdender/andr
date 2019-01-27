@@ -1,16 +1,19 @@
+import { Container } from 'typedi';
 import { Client } from 'discord.js';
+import { importful } from 'importful';
+import { effectToken } from './random';
 
-const client = new Client();
+void async function() {
 
-client.on('ready', () => {
-    console.log('Ready mate')
-});
+    const client = Container.get(Client);
 
-client.on('message', message => {
+    await importful(__dirname);
 
-    if (!message.content.startsWith('`ping')) return;
+    console.log('Before getMany')
 
-    message.channel.send('Pong')
-});
+    new Promise(() => Container.getMany(effectToken));
 
-client.login(process.env.DISCORD_TOKEN);
+    console.log('After getMany')
+
+    client.login(process.env.DISCORD_TOKEN);
+}();
