@@ -1,20 +1,16 @@
 import { Service, Inject } from 'typedi';
 import { Client, Message } from 'discord.js';
 import { bind } from 'bind-decorator';
-import { effectToken } from './random';
+import { Effect } from './random';
 
-console.log('Effect test module');
-
-@Service({ id: effectToken, multiple: true })
+@Effect()
 export class EventTest {
 
     constructor(
-        @Inject() private client: Client,
+        private client: Client,
     ) {
-        console.log('Client', client);
         client.on('ready', this.onReady);
         client.on('message', this.onMessage);
-        console.log('After construtor');
     }
 
     @bind
