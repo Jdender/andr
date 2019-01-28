@@ -6,15 +6,17 @@
   "author": "Jdender <jdenderplays@gmail.com>",
   "license": "AGPL-3.0",
   "scripts": {
-    "start": "docker-compose up",
+    "up": "docker-compose up",
+    "down": "docker-compose down",
     "restart": "docker-compose restart node",
-    "stop": "docker-compose down"
+    "build": "docker-compose up --build"
   },
   "dependencies": {
     "@types/node": "^10.12.18",
     "bind-decorator": "^1.0.11",
     "discord.js": "discordjs/discord.js#master",
     "importful": "^2.0.1",
+    "reflect-metadata": "^0.1.13",
     "ts-node": "^7.0.1",
     "typedi": "^0.8.0",
     "typescript": "^3.2.4"
