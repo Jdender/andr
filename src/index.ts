@@ -10,6 +10,7 @@ void async function() {
 
     Container.set(Client, client);
 
+    // Register and load services
     await importful(__dirname);
 
     Container.getMany(effectToken);
