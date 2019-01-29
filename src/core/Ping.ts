@@ -8,7 +8,7 @@ export class EventTest {
 
     constructor(
         private client: Client,
-        private registry: Registry,
+        registry: Registry,
     ) {
         registry.addCommand({
             id: 'ping',
@@ -20,6 +20,19 @@ export class EventTest {
     @bind
     async execute(message: Message, args: string[]) {
 
-        message.channel.send(`Pong ${args}`);
+        // Used for roundTrip
+        const pingMessage = await message.channel.send('Pinging...') as Message;
+
+        // Calculate pings
+        const roundTrip = Math.abs(pingMessage.createdTimestamp - message.createdTimestamp);
+
+        const heartbeat = Math.round(this.client.ws.ping);
+
+        // The best way I could think of is a string array
+        pingMessage.edit([
+            'Pong!',
+            `Message round-trip was **${roundTrip} ms**.`,
+            this.client.ws.ping ? `Heartbeat was **${heartbeat} ms**.` : '',
+        ].join(' '));
     }
 }
