@@ -15,7 +15,7 @@ export class Help {
             description: 'List all my commands or info about a specific command.',
             usage: [
                 'help',
-                'help ping'
+                'help <command>',
             ],
             // Replace this when I figure out proper args
             execute: async (msg, [cmd], {prefix}) => cmd 
