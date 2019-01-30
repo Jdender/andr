@@ -3,7 +3,7 @@ import { bind } from 'bind-decorator';
 import { Effect } from '../random';
 
 @Effect()
-export class EventTest {
+export class Ready {
 
     constructor(
         private client: Client,

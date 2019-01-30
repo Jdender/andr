@@ -4,7 +4,7 @@ import { Effect } from '../random';
 import { Registry } from '../Registry';
 
 @Effect()
-export class EventTest {
+export class Ping {
 
     constructor(
         private client: Client,
@@ -14,6 +14,8 @@ export class EventTest {
             id: 'ping',
             triggers: ['ping', 'pong'],
             execute: this.execute,
+            description: 'Check the my latency.',
+            usage: 'ping',
         });
     }
 
