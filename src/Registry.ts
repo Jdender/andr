@@ -23,6 +23,13 @@ export class Registry {
         this.commands.set(command.id, command);
     }
 
+    // For some reason discord.js types don't mark this as undfined
+    getFromTrigger(trigger: string): CommandMeta | undefined {
+        return this.commands.find(
+            meta => meta.triggers.includes(trigger),
+        );
+    }
+
     //-- Handle command --//
     // (May split into other class)
 
@@ -40,11 +47,17 @@ export class Registry {
         if (!trigger) return;
 
         // Find a command that has the trigger
-        const commandMeta = this.commands.find(meta => meta.triggers.includes(trigger));
+        const commandMeta = this.getFromTrigger(trigger);
         if (!commandMeta) return;
 
+        // Provide extra info for commands
+        const extra: CommandExtra = {
+            prefix,
+            trigger,
+        };
+
         // Run the command
-        commandMeta.execute(message, args)
+        commandMeta.execute(message, args, extra)
         
         // Respond with any errors
         .catch(e => message.channel.send(
@@ -53,8 +66,18 @@ export class Registry {
     }
 }
 
+// The info of a command itself
 export interface CommandMeta {
     id: string;
     triggers: string[];
-    execute: (message: Message, args: string[]) => Promise<unknown>;
+    execute: (message: Message, args: string[], extra: CommandExtra) => Promise<unknown>;
+
+    description: string;
+    usage: string | string[];
+}
+
+// Used to provide extra info to a execute
+export interface CommandExtra {
+    prefix: string;
+    trigger: string;
 }
