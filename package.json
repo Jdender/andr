@@ -1,27 +1,30 @@
 {
-  "name": "calamus",
+  "name": "birbcore",
   "version": "0.0.0",
+  "description": "Like Nintendogs but with not just dogs! Oh yeah, it's also in Discord.",
   "main": "src/index.ts",
-  "repository": "https://github.com/jdenderplays/Calamus.git",
-  "author": "Jdender <jdenderplays@gmail.com>",
+  "repository": "https://github.com/jdenderplays/BirbCore.git",
+  "contributors": [
+    "Jdender~ <jdenderplays@gmail.com>"
+  ],
   "license": "AGPL-3.0",
+  "private": true,
   "scripts": {
-    "up": "docker-compose up",
-    "down": "docker-compose down",
-    "restart": "docker-compose restart node",
-    "build": "docker-compose up --build"
+    "dev": "ts-node-dev --respawn --files .",
+    "build": "tsc"
   },
   "dependencies": {
-    "@types/node": "^10.12.18",
     "bind-decorator": "^1.0.11",
     "discord.js": "discordjs/discord.js#master",
+    "dotenv": "^8.0.0",
     "importful": "^2.0.1",
     "reflect-metadata": "^0.1.13",
-    "ts-node": "^7.0.1",
-    "typedi": "^0.8.0",
-    "typescript": "^3.2.4"
+    "typedi": "^0.8.0"
   },
   "devDependencies": {
-    "ts-node-dev": "^1.0.0-pre.32"
+    "@types/node": "^12.0.0",
+    "ts-node": "^8.1.0",
+    "ts-node-dev": "^1.0.0-pre.39",
+    "typescript": "^3.4.5"
   }
 }
