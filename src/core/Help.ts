@@ -18,9 +18,9 @@ export class Help {
                 'help <command>',
             ],
             // Replace this when I figure out proper args
-            execute: async (msg, [cmd], {prefix}) => cmd 
-                ? this.explainCommand(msg, cmd, prefix) 
-                : this.listCommands(msg),
+            execute: async ({ message, args: [cmd], prefix }) => cmd 
+                ? this.explainCommand(message, cmd, prefix) 
+                : this.listCommands(message),
         });
     }
 

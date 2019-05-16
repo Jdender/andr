@@ -1,5 +1,5 @@
-import { Collection, Message } from 'discord.js';
-import { CommandExtra } from './Dispatcher';
+import { Collection } from 'discord.js';
+import { CommandContext } from './Dispatcher';
 
 export class Registry {
 
@@ -22,7 +22,7 @@ export class Registry {
 export interface CommandMeta {
     id: string;
     triggers: string[];
-    execute: (message: Message, args: string[], extra: CommandExtra) => Promise<unknown>;
+    execute: (context: CommandContext) => Promise<unknown>;
 
     description: string;
     usage: string | string[];

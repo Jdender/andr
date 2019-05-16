@@ -34,13 +34,15 @@ export class Dispatcher {
         if (!commandMeta) return;
 
         // Provide extra info for commands
-        const extra: CommandExtra = {
+        const context: CommandContext = {
+            message,
+            args,
             prefix,
             trigger,
         };
 
         // Run the command
-        commandMeta.execute(message, args, extra)
+        commandMeta.execute(context)
         
         // Respond with any errors
         .catch(e => message.channel.send(
@@ -50,7 +52,9 @@ export class Dispatcher {
 }
 
 // Used to provide extra info to a execute
-export interface CommandExtra {
+export interface CommandContext {
+    message: Message;
+    args: string[];
     prefix: string;
     trigger: string;
 }
