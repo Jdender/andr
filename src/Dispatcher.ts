@@ -2,9 +2,7 @@ import { Effect } from './random';
 import { Client, Collection, Message } from 'discord.js';
 import bind from 'bind-decorator';
 import { Registry } from './Registry';
-
-// CONFIG
-const prefix = '`';
+import { Guild } from './db/Guild';
 
 @Effect()
 export class Dispatcher {
@@ -17,7 +15,9 @@ export class Dispatcher {
     }
 
     @bind
-    handle(message: Message) {
+    async handle(message: Message) {
+
+        const { prefix } = await message.guild.getConfig();
 
         // Basic checks
         if (!message.content.startsWith(prefix) || message.author.bot) return;
