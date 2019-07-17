@@ -1,8 +1,7 @@
 import { Effect } from './random';
-import { Client, Collection, Message } from 'discord.js';
+import { Client, Message } from 'discord.js';
 import bind from 'bind-decorator';
 import { Registry } from './Registry';
-import { Guild } from './db/Guild';
 
 @Effect()
 export class Dispatcher {
