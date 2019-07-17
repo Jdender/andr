@@ -2,6 +2,7 @@ import { Effect } from './random';
 import { Client, Message } from 'discord.js';
 import bind from 'bind-decorator';
 import { Registry } from './Registry';
+import { GuildConfig } from './db/GuildConfig.entity';
 
 @Effect()
 export class Dispatcher {
@@ -16,10 +17,14 @@ export class Dispatcher {
     @bind
     async handle(message: Message) {
 
-        const { prefix } = await message.guild.getConfig();
+        // Might need this later other then just for getPrefix
+        const guildConfig = await message.guild.getConfig();
+
+        // Get prefix
+        const prefix = this.getPrefix(message, guildConfig);
 
         // Basic checks
-        if (!message.content.startsWith(prefix) || message.author.bot) return;
+        if (!prefix || !message.content.startsWith(prefix) || message.author.bot) return;
 
         // Get raw args using regex
         const args = message.content.slice(prefix.length).split(/\s/g);
@@ -47,6 +52,24 @@ export class Dispatcher {
         .catch(e => message.channel.send(
             `There was an error when trying to run that: \`\`\`${e}\`\`\` (You should report this)`,  
         ));
+    }
+
+    getPrefix(message: Message, guildConfig: GuildConfig): string | undefined {
+
+        // Could add more if needed
+        const prefixes = [
+            guildConfig.prefix, 
+            `<@!?${this.client.user!.id}> `, // Mention
+        ];
+
+        // Yay RegExp
+        const prefixRegex = new RegExp(`^(${prefixes.join('|')})`);
+
+        // Unyay RegExpMatchArray
+        const prefix = message.content.match(prefixRegex);
+
+        // Flatten the null
+        return (prefix || [])[0];
     }
 }
 
