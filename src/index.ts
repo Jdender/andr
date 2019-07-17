@@ -6,6 +6,9 @@ import { importful } from 'importful';
 import { effectToken } from './random';
 import { createConnection } from 'typeorm';
 
+// [Important] Import structures before creating client
+import './db/Guild';
+
 void async function() {
 
     const client = new Client({});
@@ -14,8 +17,11 @@ void async function() {
 
     await createConnection({
         type: 'sqlite',
-        database: '../.data/db.sqlite',
+        database: __dirname + '/../.data/db.sqlite',
         synchronize: true,
+        entities: [
+            __dirname + '/**/*.entity.ts'
+        ],
     });
 
     // Register and load services
