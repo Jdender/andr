@@ -1,6 +1,10 @@
+# Build
 node_modules/
-.env
 dist/
+
+# Data
+.env
+.data/
 
 # Logs
 logs
