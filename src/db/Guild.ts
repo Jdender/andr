@@ -1,18 +1,9 @@
-import { Entity, PrimaryColumn, Column, BaseEntity, getRepository } from 'typeorm';
+import { getRepository } from 'typeorm';
 import { Structures } from 'discord.js';
-
-@Entity()
-class GuildConfig {
-
-    @PrimaryColumn()
-    id: string;
-
-    @Column()
-    prefix: string;
-}
+import { GuildConfig } from './GuildConfig.entity';
 
 const defaultConfig = {
-    prefix: '`',
+    prefix: ',',
 };
 
 export const Guild = Structures.extend('Guild', Base => class extends Base {
@@ -47,6 +38,8 @@ declare module 'discord.js' {
 
     interface Guild {
 
-        getConfig(): Promise<GuildConfig>
+        getConfig(): Promise<GuildConfig>;
+
+        setConfig(newConfig: Partial<GuildConfig>): Promise<void>;
     }
 }
