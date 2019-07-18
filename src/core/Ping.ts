@@ -33,9 +33,9 @@ export class Ping {
 
         // The best way I could think of is a string array
         pingMessage.edit([
-            'Pong!',
-            `Message round-trip was **${roundTrip} ms**.`,
-            this.client.ws.ping ? `Heartbeat was **${heartbeat} ms**.` : '',
-        ].join(' '));
+            'Vwoop. ',
+            `Message round-trip was \`${roundTrip} ms\``,
+            this.client.ws.ping ? `, heartbeat was \`${heartbeat} ms\`.` : '.',
+        ].join(''));
     }
 }
