@@ -1,6 +1,5 @@
 import { Effect } from './random';
 import { Client, Message } from 'discord.js';
-import bind from 'bind-decorator';
 import { Registry } from './Registry';
 import { GuildConfig } from './db/GuildConfig.entity';
 
@@ -14,8 +13,7 @@ export class Dispatcher {
         client.on('message', this.handle);
     }
 
-    @bind
-    async handle(message: Message) {
+    handle = async (message: Message) => {
 
         // Might need this later other then just for getPrefix
         const guildConfig = await message.guild.getConfig();

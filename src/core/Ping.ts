@@ -1,5 +1,4 @@
 import { Client, Message } from 'discord.js';
-import { bind } from 'bind-decorator';
 import { Effect } from '../random';
 import { Registry } from '../Registry';
 import { CommandContext } from '../Dispatcher';
@@ -20,8 +19,7 @@ export class Ping {
         });
     }
 
-    @bind
-    async execute({ message }: CommandContext) {
+    execute = async ({ message }: CommandContext) => {
 
         // Used for roundTrip
         const pingMessage = await message.channel.send('Pinging...') as Message;

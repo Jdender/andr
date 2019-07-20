@@ -1,5 +1,4 @@
 import { Client, Message } from 'discord.js';
-import { bind } from 'bind-decorator';
 import { Effect } from '../random';
 
 @Effect()
@@ -11,8 +10,7 @@ export class Ready {
         client.on('ready', this.onReady);
     }
 
-    @bind
-    onReady() {
+    onReady = () => {
 
         console.log('Ready mate');
     }
