@@ -1,7 +1,7 @@
-import { Effect } from './helpers/effect';
+import { Effect } from '../helpers/effect';
 import { Client, Message } from 'discord.js';
 import { Registry } from './Registry';
-import { GuildConfig } from './db/GuildConfig.entity';
+import { GuildConfig } from '../db/GuildConfig.entity';
 
 @Effect()
 export class Dispatcher {
