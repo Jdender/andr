@@ -1,8 +1,8 @@
 import { Client, Message } from 'discord.js';
-import { Effect } from '../random';
+import { Effect } from '../helpers/Effect';
 import { Registry } from '../Registry';
 import { CommandContext } from '../Dispatcher';
-import { smallCodeblock, inspectCodeblock } from '../formating';
+import { smallCodeblock, inspectCodeblock } from '../helpers/formating';
 
 @Effect()
 export class Debug {

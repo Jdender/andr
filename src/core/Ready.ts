@@ -1,5 +1,5 @@
 import { Client, Message } from 'discord.js';
-import { Effect } from '../random';
+import { Effect } from '../helpers/Effect';
 
 @Effect()
 export class Ready {

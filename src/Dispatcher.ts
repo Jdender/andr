@@ -1,4 +1,4 @@
-import { Effect } from './random';
+import { Effect } from './helpers/Effect';
 import { Client, Message } from 'discord.js';
 import { Registry } from './Registry';
 import { GuildConfig } from './db/GuildConfig.entity';
