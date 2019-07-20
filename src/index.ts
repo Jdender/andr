@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import { Container } from 'typedi';
 import { Client } from 'discord.js';
 import { importful } from 'importful';
-import { effectToken } from './helpers/Effect';
+import { effectToken } from './helpers/effect';
 import { createConnection } from 'typeorm';
 
 void async function() {
