@@ -6,10 +6,10 @@ import { importful } from 'importful';
 import { effectToken } from './random';
 import { createConnection } from 'typeorm';
 
-// [Important] Import structures before creating client
-import './db/Guild';
-
 void async function() {
+
+    // Register and load services and structures
+    await importful(__dirname);
 
     const client = new Client({});
 
@@ -23,9 +23,6 @@ void async function() {
             __dirname + '/**/*.entity.ts'
         ],
     });
-
-    // Register and load services
-    await importful(__dirname);
 
     Container.getMany(effectToken);
 
