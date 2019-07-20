@@ -1,6 +1,6 @@
 import { Client, Message } from 'discord.js';
 import { Effect } from '../helpers/effect';
-import { Registry } from '../Registry';
+import { Registry } from '../core/Registry';
 
 @Effect()
 export class Help {
