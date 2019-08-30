@@ -15,14 +15,17 @@ export class Dispatcher {
 
     handle = async (message: Message) => {
 
+        // Basic checks
+        if (!message.author || message.author.bot || !message.guild) return;
+
         // Might need this later other then just for getPrefix
         const guildConfig = await message.guild.getConfig();
 
         // Get prefix
         const prefix = this.getPrefix(message, guildConfig);
 
-        // Basic checks
-        if (!prefix || !message.content.startsWith(prefix) || message.author.bot) return;
+        // Prefix checks
+        if (!prefix || !message.content.startsWith(prefix)) return;
 
         // Get raw args using regex
         const args = message.content.slice(prefix.length).split(/\s/g);
