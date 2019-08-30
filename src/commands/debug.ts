@@ -50,7 +50,7 @@ export class Debug {
 
         async guildConfig({ message }) {
 
-            const config = await message.guild.getConfig();
+            const config = await message.guild!.getConfig();
             
             message.channel.send(inspectCodeblock(config));
         },
