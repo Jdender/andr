@@ -10,8 +10,7 @@ export class Registry {
         this.commands.set(command.id, command);
     }
 
-    // For some reason discord.js types don't mark this as undfined
-    getFromTrigger(trigger: string): CommandMeta | undefined {
+    getFromTrigger(trigger: string) {
         return this.commands.find(
             meta => meta.triggers.includes(trigger),
         );
